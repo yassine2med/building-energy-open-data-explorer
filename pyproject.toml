@@ -1,0 +1,10 @@
+[project]
+name = "building-energy-open-data-explorer"
+version = "0.1.0"
+description = "Rank buildings in an open energy benchmarking dataset by energy use intensity"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
