@@ -1,8 +1,16 @@
 # building-energy-open-data-explorer
 
+[![CI](https://github.com/yassine2med/building-energy-open-data-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/yassine2med/building-energy-open-data-explorer/actions/workflows/ci.yml) ![Python](https://img.shields.io/badge/python-3.10%2B-3776ab) ![License](https://img.shields.io/badge/license-MIT-8fb08a)
+
 Cities publish building energy benchmarking tables, and the first question a facility or sustainability team asks is which buildings use the most energy for their size, compared with similar buildings. This tool loads such a table, computes site energy use intensity (EUI) for every building, ranks each one within its property type, and flags statistical outliers worth an audit.
 
 The bundled data in `examples/` is invented (Building A, Building B and so on). A real city export works once its columns are renamed to the ones listed below.
+
+![Screenshot](docs/screenshot.png)
+
+## What it is for
+
+Cities publish building energy benchmarking tables, but a raw table does not say which buildings are wasteful compared with similar ones. Facility managers, sustainability staff and energy auditors use this tool to compare buildings fairly. They get energy use per square foot for every building, a rank inside its property type, and a flag on statistical outliers that are worth an audit.
 
 ## Install
 
@@ -14,13 +22,24 @@ pip install -r requirements.txt pytest
 
 Python 3.10 or newer. Depends on pandas.
 
-## Usage
+## How to use
+
+| I want to | Command |
+|---|---|
+| Rank all buildings and show the top 10 | `PYTHONPATH=src python -m energy_explorer examples/benchmarking.csv` |
+| Show a different number of top buildings | `PYTHONPATH=src python -m energy_explorer examples/benchmarking.csv --top 5` |
+| Look at one property type only | `PYTHONPATH=src python -m energy_explorer examples/benchmarking.csv --type Office` |
+| Show help | `PYTHONPATH=src python -m energy_explorer --help` |
+
+On Windows PowerShell set `$env:PYTHONPATH = "src"` first. Required columns: `building_id, name, property_type, sqft, electricity_kwh, gas_therms`.
+
+Example:
 
 ```
 PYTHONPATH=src python -m energy_explorer examples/benchmarking.csv --top 5
 ```
 
-On Windows PowerShell set `$env:PYTHONPATH = "src"` first. Output:
+Output:
 
 ```
 40 buildings used, 1 dropped (bad area or energy)
@@ -42,10 +61,6 @@ building_id        name property_type     sqft   eui  percentile  outlier
        B038 Building AL        Retail  86000.0  92.8          88    False
        B033 Building AG        Retail 114000.0  88.1          75    False
 ```
-
-Add `--type Office` to look at one property type.
-
-Required columns: `building_id, name, property_type, sqft, electricity_kwh, gas_therms`.
 
 ## How it works
 
