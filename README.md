@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/banner.svg" alt="building-energy-open-data-explorer" width="100%"></p>
+
 # building-energy-open-data-explorer
 
 [![CI](https://github.com/yassine2med/building-energy-open-data-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/yassine2med/building-energy-open-data-explorer/actions/workflows/ci.yml) ![Python](https://img.shields.io/badge/python-3.10%2B-3776ab) ![License](https://img.shields.io/badge/license-MIT-8fb08a)
